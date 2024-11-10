@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    
+    height: 100vh;
+    margin: 0;
+    background-color: #dbb2b2;
+}
+.dashboard-container {
+    height: 100%;
+    width: 300px;
+    padding: 20px;
+    background-color:rgb(141, 141, 169);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    
+}
+
+.punchin-container {
+    width: 300px;
+    height: 350px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    
+    margin-top: 200px;
+    margin-left: 300px;
+    
+   
+}
+
+/* Punch-in button */
+#punch-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#punch-btn:hover {
+    background-color: #45a049;
+}
+
+/* Inner containers for punch-in and punch-out times */
+.time-display-container {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.inner-container {
+    position: relative;
+    top: 100px;
+    width: 48%;
+    padding: 10px;
+    background-color: #992b2b;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#total-time{
+    position: relative;
+    top: 10px;
+    left: 70px;
+    height: 50px;
+    width: 50px;
+    padding: 40px;
+    background-color: #5341bb;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    text-align: center;
+}

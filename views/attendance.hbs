@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <header>
+        <nav class="dashboard-container">
+            <h1>Hi,{{user.name}}</h1>
+            <a href="/dashboard?email={{user.email}}">Dashboard</a>
+        </nav>
+    </header>
+    <main>
+       <div class="punchin-container">
+            <button id="punch-btn">Punch In</button>
+            <div class="total-time-container" id="total-time">Total Time</div>
+            <div class="time-display-container">
+                <div class="inner-container" id="punchin-time">Punch-In Time</div>
+                <div class="inner-container" id="punchout-time">Punch-Out Time</div>
+                
+            </div>
+       </div>
+    <script>
+        let punchInTime = null;
+        let isPunchedIn = false;
+
+        document.getElementById("punch-btn").addEventListener("click", function () {
+            const button = document.getElementById("punch-btn");
+            const punchInDisplay = document.getElementById("punchin-time");
+            const punchOutDisplay = document.getElementById("punchout-time");
+            const totalTimeDisplay = document.getElementById("total-time");
+            if (!isPunchedIn) {
+                // Punch in
+                punchInTime = new Date();
+                punchInDisplay.innerHTML = `Punched in at: ${punchInTime.toLocaleTimeString()}`;
+                punchOutDisplay.innerHTML = "Punch-Out Time"; // Reset punch-out display
+                button.textContent = "Punch Out";
+                button.style.backgroundColor = "#FF5722"; // Change color for punch-out
+                isPunchedIn = true;
+            } else {
+                // Punch out
+                const punchOutTime = new Date();
+                const totalTime = calculateTimeDifference(punchInTime, punchOutTime);
+
+                punchOutDisplay.innerHTML = `
+                    Punched out at: ${punchOutTime.toLocaleTimeString()}
+                    
+                `;
+                totalTimeDisplay.innerHTML = `Total: ${totalTime.hours} hrs ${totalTime.minutes} mins`
+                button.textContent = "Punch In";
+                button.style.backgroundColor = "#4CAF50"; // Revert color to punch-in
+                isPunchedIn = false;
+            }
+
+        });
+
+        function calculateTimeDifference(startTime, endTime) {
+            const diff = endTime - startTime; // difference in milliseconds
+            console.log(diff)
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            return { hours, minutes };
+        }
+    </script>
+    
+    </main>
+</body>
+</html>
